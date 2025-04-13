@@ -1,185 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>imphnen - SYSTEM OVERLOAD</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      font-family: monospace;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <title>Perangkat Terinfeksi!</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: black;
+            color: lime;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+        .message {
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        .code {
+            font-size: 18px;
+            margin-top: 30px;
+            white-space: pre;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000;
+            color: lime;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+        .popup button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #c82333;
+        }
 
-    .terminal {
-      height: 100vh;
-      overflow-y: scroll;
-      color: #00ff00;
-      padding: 10px;
-      font-size: 0.8rem;
-      animation: flicker 0.05s infinite alternate;
-      text-shadow: 0 0 10px #0f0, 0 0 20px #f00, 0 0 40px #0f0;
-    }
+        /* Style for the logo in the top-left corner */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px; /* Adjust the size of the logo */
+        }
 
-    @keyframes flicker {
-      0% { opacity: 1; }
-      100% { opacity: 0.2; }
-    }
-
-    .spam {
-      display: inline-block;
-      padding: 2px;
-      animation: spin 0.1s infinite linear;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .fb-button, .refresh-button, .start-button {
-      position: fixed;
-      top: 10px;
-      padding: 10px 14px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      z-index: 9999;
-      font-size: 14px;
-    }
-
-    .fb-button {
-      right: 10px;
-      background: #1877f2;
-      color: white;
-      box-shadow: 0 0 10px #1877f2;
-    }
-
-    .fb-button:hover {
-      background: #145dbf;
-    }
-
-    .refresh-button {
-      left: 10px;
-      background: red;
-      color: white;
-      padding: 10px 14px;
-      font-weight: bold;
-      z-index: 9999;
-      text-decoration: none;
-      border-radius: 5px;
-      box-shadow: 0 0 10px red;
-    }
-
-    .start-button {
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 50px;
-      background: #f39c12;
-      color: white;
-      font-size: 18px;
-      padding: 12px 20px;
-      box-shadow: 0 0 15px #f39c12;
-      cursor: pointer;
-    }
-
-    .start-button:hover {
-      background: #e67e22;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+        /* Style for the logo in the center */
+        .center-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px; /* Adjust the size of the logo in the center */
+            opacity: 0.1; /* Make the logo in the center semi-transparent */
+        }
+    </style>
 </head>
 <body>
-  <a href="https://facebook.com/groups/imphnen" target="_blank" class="fb-button">FB Grup Imphnen</a>
-  <a href="#" onclick="location.reload()" class="refresh-button">PERBARUI</a>
-  
-  <div class="start-screen">
-    <button class="start-button" onclick="startOverload()">Saya Malas Ngoding</button>
-  </div>
-  
-  <div class="terminal hidden" id="terminal"></div>
 
-  <script>
-    let started = false;
-    const terminal = document.getElementById("terminal");
-    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-    const startButton = document.querySelector('.start-button');
-    const startScreen = document.querySelector('.start-screen');
+    <!-- Logo Imphnen di pojok kiri atas -->
+    <img src="imphnen.png" alt="Imphnen Logo" class="logo"> <!-- Ganti dengan nama file logo yang sesuai -->
 
-    function randomCharLine(length) {
-      let line = '';
-      for (let i = 0; i < length; i++) {
-        line += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return line;
+    <!-- Logo Imphnen di tengah layar -->
+    <img src="imphnen.png" alt="Imphnen Logo Center" class="center-logo"> <!-- Ganti dengan nama file logo yang sesuai -->
+
+<div>
+    <h1>PERINGATAN: PERANGKAT ANDA TERINFESTASI!</h1>
+    <div class="message">
+        <p><strong>ALERT!</strong> Sistem mendeteksi masalah serius. Perangkat Anda akan segera terinfeksi virus jika Anda tidak mengoding sekarang!</p>
+        <p><strong>Segera buka editor kode Anda untuk menghindari infeksi!</strong></p>
+    </div>
+    <div class="code" id="code"></div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+    <p><strong>Waktunya ngoding! </strong> Jangan biarkan perangkatmu terinfeksi!</p>
+    <button onclick="redirectToLink()">IMPHNEN</button>
+</div>
+
+<script>
+    let codeExecutionCount = 0;
+    const codeDiv = document.getElementById("code");
+
+    // Fungsi untuk menampilkan kode dengan perubahan setiap iterasi
+    function displayVirusCode() {
+        const virusCode = `
+############## WARNING ##############
+Virus Detected: INFECTED FILE SYSTEM!
+Attempting to execute payload... 
+Initializing Malware: Running... 
+File corrupt: SYSTEM.NTCORE.EXE
+Injecting Virus...
+===============================
+EXECUTING CODE:
+> Downloading 10,000 files...
+> Writing malicious script...
+> Overwriting system files...
+
+>>> SYSTEM ERROR: Cannot recover
+>>> SYSTEM FAILURE: Rebooting...
+>>> SYSTEM SHUTDOWN IN PROGRESS...
+===================================
+`;
+
+        // Menambah jumlah eksekusi virus yang terdeteksi
+        codeExecutionCount++;
+        
+        // Update kode untuk menampilkan lebih banyak output secara berulang
+        codeDiv.innerText = virusCode.repeat(codeExecutionCount);
+
+        // Teruskan mengeksekusi virus (dengan jeda waktu 2 detik)
+        if (codeExecutionCount < 5) {
+            setTimeout(displayVirusCode, 2000); // Ulangi setelah 2 detik
+        } else {
+            // Tampilkan pop-up setelah virus code diproses 5 kali
+            setTimeout(function() {
+                document.getElementById('popup').style.display = 'block';
+            }, 1000);
+        }
     }
 
-    function startOverload() {
-      if (!started) {
-        started = true;
-        startScreen.classList.add('hidden'); // Sembunyikan tombol
-        terminal.classList.remove('hidden'); // Tampilkan terminal
+    // Mulai menampilkan kode
+    setTimeout(function() {
+        document.querySelector('.message').innerHTML = `<p><strong>ALERT!</strong> Terlambat! Perangkat Anda hampir terinfeksi oleh virus! Segera mengoding untuk mencegahnya!</p>`;
+        
+        // Menunggu beberapa detik sebelum memulai proses
+        setTimeout(function() {
+            displayVirusCode();
+        }, 5000); // Menunggu 5 detik untuk memberi waktu baca
+    }, 5000); // Delay 5 detik untuk peringatan pertama
 
-        // Bunyi acak & overload
-        let audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
-        audio.loop = true;
-        audio.play();
-
-        // Ultra Spam Generator (browser dan HP bakal lag parah)
-        setInterval(() => {
-          let chunk = '';
-          for (let i = 0; i < 1000; i++) {  
-            chunk += `<span class="spam">${randomCharLine(200)}</span><br>`;
-          }
-          terminal.innerHTML += chunk;
-          terminal.scrollTop = terminal.scrollHeight;
-        }, 5); 
-
-        // Pemuatan gambar/video untuk GPU overload
-        const createOverloadEffect = () => {
-          for (let i = 0; i < 1000; i++) {
-            const img = document.createElement('img');
-            img.src = "https://placekitten.com/400/400";
-            img.style.position = 'absolute';
-            img.style.left = `${Math.random() * window.innerWidth}px`;
-            img.style.top = `${Math.random() * window.innerHeight}px`;
-            img.style.animation = 'spin 0.2s infinite linear';
-            document.body.appendChild(img);
-          }
-        };
-
-        createOverloadEffect();  // Jalankan overload grafik
-
-        // CPU intensive task
-        const cpuIntensiveTask = () => {
-          while (true) {
-            Math.sqrt(Math.random() * 1000000);  // Perhitungan intensif tanpa berhenti
-          }
-        };
-
-        setTimeout(cpuIntensiveTask, 100); 
-
-        // Roasting sadis
-        const roasts = [
-          "imphnen > Woy, ngoding bukan buat dikagumi doang, DIKERJAIN!",
-          "imphnen > Nunggu mood? Keyboard kamu bukan alat ramalan.",
-          "imphnen > Project-mu gak akan jalan kalau cuma diangan!",
-          "imphnen > Ngoding tuh bukan nunggu semesta setuju.",
-          "imphnen > Kamu bukan stuck, kamu cuma nyerah diam-diam.",
-          "imphnen > Malas ngoding = musuh peradaban digital.",
-          "imphnen > HP kamu lag karena kamu LAG juga ngodingnya."
-        ];
-
-        setInterval(() => {
-          const roast = roasts[Math.floor(Math.random() * roasts.length)];
-          terminal.innerHTML += `<div style="color:red;font-style:italic;">${roast}</div>`;
-        }, 500);
-      }
+    // Fungsi untuk mengarahkan ke link tujuan setelah tombol diklik
+    function redirectToLink() {
+        window.location.href = "https://www.example.com"; // Ganti dengan link yang diinginkan
     }
-  </script>
+</script>
+
 </body>
-  </html
+</html>
