@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>imphnen - SYSTEM OVERLOAD</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      font-family: monospace;
+      overflow: hidden;
+    }
+
+    .terminal {
+      height: 100vh;
+      overflow-y: scroll;
+      color: #00ff00;
+      padding: 10px;
+      font-size: 0.8rem;
+      animation: flicker 0.05s infinite alternate;
+      text-shadow: 0 0 10px #0f0, 0 0 20px #f00, 0 0 40px #0f0;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.2; }
+    }
+
+    .spam {
+      display: inline-block;
+      padding: 2px;
+      animation: spin 0.1s infinite linear;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .fb-button, .refresh-button, .start-button {
+      position: fixed;
+      top: 10px;
+      padding: 10px 14px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 9999;
+      font-size: 14px;
+    }
+
+    .fb-button {
+      right: 10px;
+      background: #1877f2;
+      color: white;
+      box-shadow: 0 0 10px #1877f2;
+    }
+
+    .fb-button:hover {
+      background: #145dbf;
+    }
+
+    .refresh-button {
+      left: 10px;
+      background: red;
+      color: white;
+      padding: 10px 14px;
+      font-weight: bold;
+      z-index: 9999;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 0 10px red;
+    }
+
+    .start-button {
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 50px;
+      background: #f39c12;
+      color: white;
+      font-size: 18px;
+      padding: 12px 20px;
+      box-shadow: 0 0 15px #f39c12;
+      cursor: pointer;
+    }
+
+    .start-button:hover {
+      background: #e67e22;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="https://facebook.com/groups/imphnen" target="_blank" class="fb-button">FB Grup Imphnen</a>
+  <a href="#" onclick="location.reload()" class="refresh-button">PERBARUI</a>
+  
+  <div class="start-screen">
+    <button class="start-button" onclick="startOverload()">Saya Malas Ngoding</button>
+  </div>
+  
+  <div class="terminal hidden" id="terminal"></div>
+
+  <script>
+    let started = false;
+    const terminal = document.getElementById("terminal");
+    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    const startButton = document.querySelector('.start-button');
+    const startScreen = document.querySelector('.start-screen');
+
+    function randomCharLine(length) {
+      let line = '';
+      for (let i = 0; i < length; i++) {
+        line += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return line;
+    }
+
+    function startOverload() {
+      if (!started) {
+        started = true;
+        startScreen.classList.add('hidden'); // Sembunyikan tombol
+        terminal.classList.remove('hidden'); // Tampilkan terminal
+
+        // Bunyi acak & overload
+        let audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+        audio.loop = true;
+        audio.play();
+
+        // Ultra Spam Generator (browser dan HP bakal lag parah)
+        setInterval(() => {
+          let chunk = '';
+          for (let i = 0; i < 1000; i++) {  
+            chunk += `<span class="spam">${randomCharLine(200)}</span><br>`;
+          }
+          terminal.innerHTML += chunk;
+          terminal.scrollTop = terminal.scrollHeight;
+        }, 5); 
+
+        // Pemuatan gambar/video untuk GPU overload
+        const createOverloadEffect = () => {
+          for (let i = 0; i < 1000; i++) {
+            const img = document.createElement('img');
+            img.src = "https://placekitten.com/400/400";
+            img.style.position = 'absolute';
+            img.style.left = `${Math.random() * window.innerWidth}px`;
+            img.style.top = `${Math.random() * window.innerHeight}px`;
+            img.style.animation = 'spin 0.2s infinite linear';
+            document.body.appendChild(img);
+          }
+        };
+
+        createOverloadEffect();  // Jalankan overload grafik
+
+        // CPU intensive task
+        const cpuIntensiveTask = () => {
+          while (true) {
+            Math.sqrt(Math.random() * 1000000);  // Perhitungan intensif tanpa berhenti
+          }
+        };
+
+        setTimeout(cpuIntensiveTask, 100); 
+
+        // Roasting sadis
+        const roasts = [
+          "imphnen > Woy, ngoding bukan buat dikagumi doang, DIKERJAIN!",
+          "imphnen > Nunggu mood? Keyboard kamu bukan alat ramalan.",
+          "imphnen > Project-mu gak akan jalan kalau cuma diangan!",
+          "imphnen > Ngoding tuh bukan nunggu semesta setuju.",
+          "imphnen > Kamu bukan stuck, kamu cuma nyerah diam-diam.",
+          "imphnen > Malas ngoding = musuh peradaban digital.",
+          "imphnen > HP kamu lag karena kamu LAG juga ngodingnya."
+        ];
+
+        setInterval(() => {
+          const roast = roasts[Math.floor(Math.random() * roasts.length)];
+          terminal.innerHTML += `<div style="color:red;font-style:italic;">${roast}</div>`;
+        }, 500);
+      }
+    }
+  </script>
+</body>
+  </html
